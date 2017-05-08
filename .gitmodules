@@ -1,0 +1,3 @@
+[submodule "Measurement_Points.pretty"]
+	path = Measurement_Points.pretty
+	url = git@github.com:KiCad/Measurement_Points.pretty.git
