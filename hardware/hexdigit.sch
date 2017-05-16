@@ -108,10 +108,10 @@ U 1 1 5910A6F6
 P 2600 2600
 F 0 "RP1" H 2600 3050 50  0000 C CNN
 F 1 "330" H 2600 2550 50  0000 C CNN
-F 2 "Resistors_SMD:R_Array_Convex_4x0603" H 2600 2600 50  0001 C CNN
+F 2 "Resistors_SMD:R_Array_Concave_4x0402" H 2600 2600 50  0001 C CNN
 F 3 "" H 2600 2600 50  0000 C CNN
 	1    2600 2600
-	1    0    0    -1  
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R_PACK4 RP2
@@ -119,10 +119,10 @@ U 1 1 5910A772
 P 2500 3300
 F 0 "RP2" H 2500 3750 50  0000 C CNN
 F 1 "330" H 2500 3250 50  0000 C CNN
-F 2 "Resistors_SMD:R_Array_Convex_4x0603" H 2500 3300 50  0001 C CNN
+F 2 "Resistors_SMD:R_Array_Concave_4x0402" H 2500 3300 50  0001 C CNN
 F 3 "" H 2500 3300 50  0000 C CNN
 	1    2500 3300
-	1    0    0    -1  
+	-1   0    0    -1  
 $EndComp
 $Comp
 L +5V #PWR03
@@ -142,45 +142,37 @@ Wire Wire Line
 Wire Wire Line
 	4600 2900 4500 2900
 Connection ~ 4600 2800
-Text GLabel 3100 4850 0    50   Input ~ 0
+Text GLabel 2300 3050 0    50   Input ~ 0
 DIG_A
-Text GLabel 3000 5100 0    50   Input ~ 0
+Text GLabel 2300 2950 0    50   Input ~ 0
 DIG_B
-Text GLabel 3000 5250 0    50   Input ~ 0
+Text GLabel 2400 2450 0    50   Input ~ 0
 DIG_C
-Text GLabel 3000 5400 0    50   Input ~ 0
+Text GLabel 2400 2350 0    50   Input ~ 0
 DIG_D
-Text GLabel 3000 5600 0    50   Input ~ 0
+Text GLabel 2400 2250 0    50   Input ~ 0
 DIG_E
-Text GLabel 3000 5750 0    50   Input ~ 0
+Text GLabel 2300 3150 0    50   Input ~ 0
 DIG_F
-Text GLabel 3000 5950 0    50   Input ~ 0
+Text GLabel 2300 3250 0    50   Input ~ 0
 DIG_G
-Text GLabel 2900 6100 0    50   Input ~ 0
+Text GLabel 2400 2550 0    50   Input ~ 0
 DP
-Wire Wire Line
-	3350 5900 3450 5900
-Wire Wire Line
-	3450 5800 3350 5800
-Wire Wire Line
-	3350 5700 3450 5700
-Wire Wire Line
-	3450 5600 3350 5600
-Text GLabel 7550 2200 2    50   Output ~ 0
+Text GLabel 7550 3300 2    50   Output ~ 0
 DIG_A
-Text GLabel 7550 2300 2    50   Output ~ 0
+Text GLabel 7550 3400 2    50   Output ~ 0
 DIG_B
-Text GLabel 7550 2400 2    50   Output ~ 0
+Text GLabel 7550 4100 2    50   Output ~ 0
 DIG_C
-Text GLabel 7550 2500 2    50   Output ~ 0
+Text GLabel 7550 2200 2    50   Output ~ 0
 DIG_D
-Text GLabel 7550 2600 2    50   Output ~ 0
+Text GLabel 7550 2300 2    50   Output ~ 0
 DIG_E
-Text GLabel 7550 2700 2    50   Output ~ 0
+Text GLabel 7550 3200 2    50   Output ~ 0
 DIG_F
 Text GLabel 7550 2800 2    50   Output ~ 0
 DIG_G
-Text GLabel 7550 3400 2    50   Output ~ 0
+Text GLabel 7550 4000 2    50   Output ~ 0
 DP
 $Comp
 L ATTINY1634-MU IC1
@@ -233,9 +225,9 @@ Text GLabel 7650 2950 2    50   Input ~ 0
 DC_IN
 Text GLabel 7650 3050 2    50   Output ~ 0
 DC_OUT
-Text GLabel 7550 3200 2    50   Input ~ 0
+Text GLabel 8350 3200 2    50   Input ~ 0
 SDI
-Text GLabel 7550 3300 2    50   Output ~ 0
+Text GLabel 8350 3300 2    50   Output ~ 0
 SDO
 Text GLabel 7550 3700 2    50   Input ~ 0
 SCK
@@ -271,13 +263,13 @@ Wire Wire Line
 	5550 2200 5450 2200
 Wire Wire Line
 	5450 2200 5450 2100
-Text GLabel 7550 3600 2    50   Input ~ 0
+Text GLabel 7550 2700 2    50   Input ~ 0
 D0
-Text GLabel 7550 3800 2    50   Input ~ 0
+Text GLabel 7550 2600 2    50   Input ~ 0
 D1
-Text GLabel 7550 4000 2    50   Input ~ 0
+Text GLabel 7550 2500 2    50   Input ~ 0
 D2
-Text GLabel 7550 4100 2    50   Input ~ 0
+Text GLabel 7550 2400 2    50   Input ~ 0
 D3
 Wire Wire Line
 	7450 3600 7550 3600
@@ -304,17 +296,6 @@ Wire Wire Line
 Wire Wire Line
 	9200 2850 9200 2750
 $Comp
-L C C1
-U 1 1 5910D2B7
-P 5200 3150
-F 0 "C1" H 5225 3250 50  0000 L CNN
-F 1 "100n" H 5225 3050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 5238 3000 50  0001 C CNN
-F 3 "" H 5200 3150 50  0000 C CNN
-	1    5200 3150
-	1    0    0    -1  
-$EndComp
-$Comp
 L C C2
 U 1 1 5910D373
 P 5450 3150
@@ -327,20 +308,9 @@ F 3 "" H 5450 3150 50  0000 C CNN
 $EndComp
 $Comp
 L GND #PWR06
-U 1 1 5910D3D9
-P 5200 3400
-F 0 "#PWR06" H 5200 3150 50  0001 C CNN
-F 1 "GND" H 5200 3250 50  0000 C CNN
-F 2 "" H 5200 3400 50  0000 C CNN
-F 3 "" H 5200 3400 50  0000 C CNN
-	1    5200 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR07
 U 1 1 5910D46C
 P 5450 3400
-F 0 "#PWR07" H 5450 3150 50  0001 C CNN
+F 0 "#PWR06" H 5450 3150 50  0001 C CNN
 F 1 "GND" H 5450 3250 50  0000 C CNN
 F 2 "" H 5450 3400 50  0000 C CNN
 F 3 "" H 5450 3400 50  0000 C CNN
@@ -348,21 +318,10 @@ F 3 "" H 5450 3400 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR08
-U 1 1 5910D4E7
-P 5200 2900
-F 0 "#PWR08" H 5200 2750 50  0001 C CNN
-F 1 "+5V" H 5200 3040 50  0000 C CNN
-F 2 "" H 5200 2900 50  0000 C CNN
-F 3 "" H 5200 2900 50  0000 C CNN
-	1    5200 2900
-	1    0    0    -1  
-$EndComp
-$Comp
-L +5V #PWR09
+L +5V #PWR07
 U 1 1 5910D552
 P 5450 2900
-F 0 "#PWR09" H 5450 2750 50  0001 C CNN
+F 0 "#PWR07" H 5450 2750 50  0001 C CNN
 F 1 "+5V" H 5450 3040 50  0000 C CNN
 F 2 "" H 5450 2900 50  0000 C CNN
 F 3 "" H 5450 2900 50  0000 C CNN
@@ -370,11 +329,7 @@ F 3 "" H 5450 2900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5200 3000 5200 2900
-Wire Wire Line
 	5450 2900 5450 3000
-Wire Wire Line
-	5200 3300 5200 3400
 Wire Wire Line
 	5450 3400 5450 3300
 Text GLabel 9100 3750 3    50   Input ~ 0
