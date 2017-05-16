@@ -1,4 +1,4 @@
-update=Mon 08 May 2017 20:09:15 BST
+update=Tue 16 May 2017 11:31:34 BST
 version=1
 last_client=kicad
 [pcbnew]
@@ -27,7 +27,7 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=Measurement_Points.pretty
+LibDir=../hardware
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -55,6 +55,6 @@ LibName23=display
 LibName24=cypress
 LibName25=siliconi
 LibName26=opto
-LibName27=atmel
-LibName28=contrib
-LibName29=valves
+LibName27=contrib
+LibName28=valves
+LibName29=atmel-qfn-gnd

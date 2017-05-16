@@ -1,0 +1,23 @@
+(module 7SegmentLED_LTS6760_LTS6780 (layer F.Cu) (tedit 5919F28C)
+  (fp_text reference AFF1 (at 0 -1.5) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value 7SEGMENTS (at 0 1.5) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (pad 1 thru_hole circle (at -5.08 7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 2 thru_hole circle (at -2.54 7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 3 thru_hole circle (at 0 7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 4 thru_hole circle (at 2.54 7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 5 thru_hole circle (at 5.08 7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 6 thru_hole circle (at 5.08 -7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 7 thru_hole circle (at 2.54 -7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 8 thru_hole circle (at 0 -7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 9 thru_hole circle (at -2.54 -7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (pad 10 thru_hole circle (at -5.08 -7.62) (size 1.524 1.524) (drill 0.8) (layers *.Cu *.Mask F.SilkS))
+  (model Displays_7-Segment.3dshapes/7SegmentLED_LTS6760_LTS6780.wrl
+    (at (xyz 0 0 0))
+    (scale (xyz 0.3937 0.3937 0.3937))
+    (rotate (xyz 0 0 0))
+  )
+)
