@@ -19,8 +19,7 @@ void gpio_init(void);
 
 int main(void)
 {
-    DDRD = 0xFF;
-
+    gpio_init();
     while(1){
         raw_write(SPECIAL_SEG_A);
         _delay_ms(250);
@@ -119,39 +118,30 @@ int main(void)
         _delay_ms(1000);
         raw_write(SPECIAL_DEFINED);
         _delay_ms(1000);
-    
     }
 }
 
 void raw_write(uint8_t pattern)
 {
-    PORTD = pattern;
-    return;
-
-    uint8_t action, idx, *out_a, *out_c;
-    // Port that segment [G..A] appear in.
-    uint8_t* ports[7] = {out_c, out_c, out_a, out_a, out_a, out_c, out_c};
-    // Pin on above port the segment appears on.
-    uint8_t pins[7] = {PC0, PC2, PA6, PA5, PA4, PC5, PC4};
-
+    // Logic mash to turn bits into pins.
+    uint8_t out_a, out_c;
     out_a = PORTA;
-    out_c = PORTD;
-
-    // Increment through each bit.
-    for(idx = 1; idx != 128; idx = idx << 1){
-        PORTC = ~idx;
-        _delay_ms(250);
-/*        // Get the value to write to the pin.
-        action = pattern & idx;
-        if(action){
-            *ports[idx] |= _BV(pins[idx]);
-        }
-        else{
-            *ports[idx] &= ~_BV(pins[idx]);
-        }*/
-    }
-    PORTA = out_a;
+    out_c = PORTC;
+    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC0);
+    pattern>>=1;
+    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC2);
+    pattern>>=1;
+    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << PA6);
+    pattern>>=1;
+    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << PA5);
+    pattern>>=1;
+    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << PA4);
+    pattern>>=1;
+    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC5);
+    pattern>>=1;
+    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC4);
     PORTD = out_c;
+    PORTA = out_a;
     return;
 }
 
@@ -161,4 +151,5 @@ void gpio_init(void)
     DDRA = 0b01111000;
     DDRB = 0b00000001;
     DDRC = 0b00110101;
+    DDRD = 0b00110101;
 }
