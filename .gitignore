@@ -1,3 +1,6 @@
+# Doxygen output folder.
+doc/output/
+
 # Object files
 *.o
 *.ko

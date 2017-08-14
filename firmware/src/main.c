@@ -5,6 +5,8 @@
     \brief Main code for the hexdigit.
 */
 
+#define F_CPU 8000000
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include "font.h"
@@ -16,109 +18,19 @@
 
 void raw_write(uint8_t pattern);
 void gpio_init(void);
+uint8_t read_input(void);
 
 int main(void)
 {
     gpio_init();
+    uart_init();
+    PORTA = 0xFF;
+    PORTC = 0xFF;
     while(1){
-        raw_write(SPECIAL_SEG_A);
-        _delay_ms(250);
-        raw_write(SPECIAL_SEG_B);
-        _delay_ms(250);
-        raw_write(SPECIAL_SEG_C);
-        _delay_ms(250);
-        raw_write(SPECIAL_SEG_D);
-        _delay_ms(250);
-        raw_write(SPECIAL_SEG_E);
-        _delay_ms(250);
-        raw_write(SPECIAL_SEG_F);
-        _delay_ms(250);
-        raw_write(SPECIAL_SEG_G);
-        _delay_ms(250);
-
-        raw_write(NUMBER_0);
-        _delay_ms(1000);
-        raw_write(NUMBER_1);
-        _delay_ms(1000);
-        raw_write(NUMBER_2);
-        _delay_ms(1000);
-        raw_write(NUMBER_3);
-        _delay_ms(1000);
-        raw_write(NUMBER_4);
-        _delay_ms(1000);
-        raw_write(NUMBER_5);
-        _delay_ms(1000);
-        raw_write(NUMBER_6);
-        _delay_ms(1000);
-        raw_write(NUMBER_7);
-        _delay_ms(1000);
-        raw_write(NUMBER_8);
-        _delay_ms(1000);
         raw_write(NUMBER_9);
-        _delay_ms(1000);
-        raw_write(LETTER_A);
-        _delay_ms(1000);
-        raw_write(LETTER_B);
-        _delay_ms(1000);
-        raw_write(LETTER_C);
-        _delay_ms(1000);
-        raw_write(LETTER_D);
-        _delay_ms(1000);
-        raw_write(LETTER_E);
-        _delay_ms(1000);
-        raw_write(LETTER_F);
-        _delay_ms(1000);
-        raw_write(LETTER_G);
-        _delay_ms(1000);
-        raw_write(LETTER_H);
-        _delay_ms(1000);
-//        raw_write(LETTER_I);
-//        _delay_ms(1000);
-        raw_write(LETTER_J);
-        _delay_ms(1000);
-//        raw_write(LETTER_K);
-//        _delay_ms(1000);
-        raw_write(LETTER_L);
-        _delay_ms(1000);
-//        raw_write(LETTER_M);
-//        _delay_ms(1000);
-        raw_write(LETTER_N);
-        _delay_ms(1000);
-        raw_write(LETTER_O);
-        _delay_ms(1000);
-        raw_write(LETTER_P);
-        _delay_ms(1000);
-        raw_write(LETTER_Q);
-        _delay_ms(1000);
-        raw_write(LETTER_R);
-        _delay_ms(1000);
-        raw_write(LETTER_S);
-        _delay_ms(1000);
-        raw_write(LETTER_T);
-        _delay_ms(1000);
-        raw_write(LETTER_U);
-        _delay_ms(1000);
-//        raw_write(LETTER_V);
-//        _delay_ms(1000);
-//        raw_write(LETTER_W);
-//        _delay_ms(1000);
-//        raw_write(LETTER_X);
-//        _delay_ms(1000);
-        raw_write(LETTER_Y);
-        _delay_ms(1000);
-//        raw_write(LETTER_Z);
-//        _delay_ms(1000);
-        raw_write(SPECIAL_BLANK);
-        _delay_ms(1000);
-        raw_write(SPECIAL_UNDERSCORE);
-        _delay_ms(1000);
-        raw_write(SPECIAL_OVERSCORE);
-        _delay_ms(1000);
-        raw_write(SPECIAL_EQUALS);
-        _delay_ms(1000);
-        raw_write(SPECIAL_DEFINED);
-        _delay_ms(1000);
+        _delay_ms(100);
     }
+    return 0;
 }
 
 void raw_write(uint8_t pattern)
@@ -127,6 +39,7 @@ void raw_write(uint8_t pattern)
     uint8_t out_a, out_c;
     out_a = PORTA;
     out_c = PORTC;
+
     out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC0);
     pattern>>=1;
     out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC2);
@@ -140,16 +53,56 @@ void raw_write(uint8_t pattern)
     out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC5);
     pattern>>=1;
     out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC4);
-    PORTD = out_c;
+
     PORTA = out_a;
+    PORTC = out_c;
     return;
+}
+
+uint8_t read_input(void)
+{
+    uint8_t value = 0;
+    value = (PINB >> 1) & 0x07;
+    value |= ((PINC << 2) & 0x08);
+    return value;
 }
 
 void gpio_init(void)
 {
     // Input/Output directions.
     DDRA = 0b01111000;
+    // UART Out.
     DDRB = 0b00000001;
     DDRC = 0b00110101;
-    DDRD = 0b00110101;
+
+    // Pull up on inputs.
+    PUEA = 0b10000110;
+    PUEB = 0b00001110;
+    PUEC = 0b00001010;
+    return;
+}
+
+void uart_init(void)
+{
+    // Set up 9600 baud rate calculation.
+    #define BAUD 9600
+    #include <util/setbaud.h>
+    // Set baud rate.
+    UBRR0H = UBRRH_VALUE;
+    UBRR0L = UBRRL_VALUE;
+    // Use doublespeed mode if needed.
+    #if USE_2X
+        UCSR0A |= _BV(U2X0);
+    #else
+        UCSR0A &= ~_BV(U2X0);
+    #endif
+    // Enable the transmit and receive hardware.
+    UCSR0B |= _BV(RXEN0) | _BV(TXEN0);
+    return;
+}
+
+void adc_init(void)
+{
+    
+    return;
 }
