@@ -78,7 +78,7 @@
 #define SPECIAL_SPACE       0b1111111 ///< Space
 #define SPECIAL_UNDERSCORE  0b1110111 ///< Underscore _ (Seg D)
 #define SPECIAL_OVERSCORE   0b0111111 ///< Overscore ‾ (Seg A)
-#define SPECIAL_HYPHEN      0b1111110 ///< Hyphern - (Seg G)
+#define SPECIAL_HYPHEN      0b1111110 ///< Hyphen - (Seg G)
 #define SPECIAL_EQUALS      0b1110110 ///< Equals =
 #define SPECIAL_DEFINED     0b0110110 ///< Defined ≡
 
