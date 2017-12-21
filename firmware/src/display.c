@@ -162,7 +162,6 @@ void char_write(uint8_t disp)
         C_SEGMENTS(SPECIAL_EQUALS_C);
         break;
     default:
-        PORTA ^= 0x08;
         break;
     }
     return;
@@ -187,4 +186,9 @@ void raw_write(uint8_t pattern)
     A_SEGMENTS(out_a);
     C_SEGMENTS(out_c);
     return;
+}
+
+inline void dp_toggle(void)
+{
+    PORTA ^= 0x08;
 }

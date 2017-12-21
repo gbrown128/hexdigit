@@ -7,6 +7,8 @@
 
 #include <avr/io.h>
 #include "hardware.h"
+#include "display.h"
+#include "font.h"
 
 void init_hw(void)
 {
@@ -29,6 +31,11 @@ void init_gpio(void)
     PUEA = 0b10000110;
     PUEB = 0b00001110;
     PUEC = 0b00001010;
+
+    // Ensure the display is off at startup.
+    A_SEGMENTS(SPECIAL_BLANK_A);
+    C_SEGMENTS(SPECIAL_BLANK_C);
+    DP_OFF();
     return;
 }
 

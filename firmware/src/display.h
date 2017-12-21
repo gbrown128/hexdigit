@@ -30,6 +30,13 @@ void char_write(uint8_t disp);
 /// Write bit pattern to 7-seg 0xABCDEFG
 void raw_write(uint8_t pattern);
 
+/// Toggle the decimal place.
+void dp_toggle(void);
+
+/// Turn the DP on.
+#define DP_ON(x) (PORTA &= ~0x08)
+#define DP_OFF(x) (PORTA |= 0x08)
+
 /// Set and clear segment bits on PORTA
 #define A_SEGMENTS(x) (PORTA = (PORTA & DISPLAY_MASK_A) | x)
 /// Set and clear segment bits on PORTC

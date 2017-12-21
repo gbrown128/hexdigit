@@ -6,7 +6,7 @@ FLASHTOOLFLAGS = -c avrisp -P /dev/ttyACM0 -p attiny1634 -b 115200
 PREFIX = avr-
 CC = $(PREFIX)gcc
 OBJCOPY = $(PREFIX)objcopy
-CFLAGS = -O3 -Os -Wall -mmcu=attiny1634
+CFLAGS = -O3 -Wall -mmcu=attiny1634
 CPPFLAGS = -DF_CPU=8000000
 SIZE = $(PREFIX)size
 
