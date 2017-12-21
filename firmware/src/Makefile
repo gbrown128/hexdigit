@@ -8,6 +8,7 @@ CC = $(PREFIX)gcc
 OBJCOPY = $(PREFIX)objcopy
 CFLAGS = -O3 -Os -Wall -mmcu=attiny1634
 CPPFLAGS = -DF_CPU=8000000
+SIZE = $(PREFIX)size
 
 # Make Setup
 
@@ -23,8 +24,9 @@ flash: main.hex
 main.hex: main
 	avr-objcopy main -O ihex main.hex
 
-main: main.o hardware.o
-	$(CC) $(CFLAGS) -o main main.o hardware.o
+main: main.o hardware.o display.c
+	$(CC) $(CFLAGS) -o main main.o hardware.o display.c
+	$(SIZE) main
 
 clean:
 	rm -f *.o

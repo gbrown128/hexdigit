@@ -8,11 +8,6 @@
 #ifndef _HARDWARE_H_
 #define _HARDWARE_H_
 
-/// Display segment bits on port A.
-#define DISPLAY_MASK_A 0b00001110
-/// Display segment bits on port C.
-#define DISPLAY_MASK_C 0b00110101
-
 /** \addtogroup HWINIT Hardware Init Functions
     \{
 */

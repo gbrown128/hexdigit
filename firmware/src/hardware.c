@@ -17,9 +17,12 @@ void init_hw(void)
 void init_gpio(void)
 {
     // Input/Output directions.
+    // 1 is output.
+    // DP and C, D, E
     DDRA = 0b01111000;
-    // UART Out.
+    // UART Out. D0-2
     DDRB = 0b00000001;
+    // A, B, G, and F
     DDRC = 0b00110101;
 
     // Pull up on inputs.

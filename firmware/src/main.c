@@ -9,6 +9,7 @@
 #include <util/delay.h>
 
 #include "hardware.h"
+#include "display.h"
 #include "font.h"
 
 void raw_write(uint8_t pattern);
@@ -16,42 +17,33 @@ uint8_t read_input(void);
 
 int main(void)
 {
+    uint8_t idx = 0;
     init_hw();
     PORTA = 0xFF;
     PORTC = 0xFF;
     while(1){
-        raw_write(NUMBER_5);
+        for(idx = '0'; idx <= '9'; idx++){
+            char_write(idx);
+            _delay_ms(250);
+        }
+        for(idx = 'A'; idx <= 'Z'; idx++){
+            char_write(idx);
+            _delay_ms(250);
+        }
+        for(idx = 'a'; idx <= 'z'; idx++){
+            char_write(idx);
+            _delay_ms(250);
+        }
+        char_write(' ');
         _delay_ms(1000);
-        raw_write(NUMBER_0);
+        char_write('_');
+        _delay_ms(1000);
+        char_write('-');
+        _delay_ms(1000);
+        char_write('=');
         _delay_ms(1000);
     }
     return 0;
-}
-
-void raw_write(uint8_t pattern)
-{
-    // Logic mash to turn bits into pins.
-    uint8_t out_a, out_c;
-    out_a = PORTA;
-    out_c = PORTC;
-
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC0);
-    pattern>>=1;
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC2);
-    pattern>>=1;
-    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << PA6);
-    pattern>>=1;
-    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << PA5);
-    pattern>>=1;
-    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << PA4);
-    pattern>>=1;
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC5);
-    pattern>>=1;
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << PC4);
-
-    PORTA = out_a;
-    PORTC = out_c;
-    return;
 }
 
 uint8_t read_input(void)

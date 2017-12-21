@@ -3,26 +3,9 @@
 
 void raw_write(char* name, uint8_t pattern)
 {
-    // Logic mash to turn bits into pins.
-
-    uint8_t out_c = 0, out_a = 0;
-
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << 0);
-    pattern>>=1;
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << 2);
-    pattern>>=1;
-    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << 6);
-    pattern>>=1;
-    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << 5);
-    pattern>>=1;
-    out_a ^= (-(pattern&0x1) ^ out_a) & (1 << 4);
-    pattern>>=1;
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << 5);
-    pattern>>=1;
-    out_c ^= (-(pattern&0x1) ^ out_c) & (1 << 4);
-
-    printf("#define %s_A 0x%02X\n", name, out_a);
-    printf("#define %s_C 0x%02X\n", name, out_c);
+    uint8_t a;
+    a = name[7];
+    printf("    case '%c':\n        A_SEGMENTS(%s_A);\n        C_SEGMENTS(%s_C);\n        break;\n", a, name, name);
     return;
 }
 
@@ -56,19 +39,9 @@ raw_write("LETTER_S", 0b0100100);
 raw_write("LETTER_T", 0b1110000);
 raw_write("LETTER_U", 0b1100011);
 raw_write("LETTER_Y", 0b1000100);
-raw_write("SPECIAL_BLANK", 0b1111111);
 raw_write("SPECIAL_SPACE", 0b1111111);
 raw_write("SPECIAL_UNDERSCORE", 0b1110111);
-raw_write("SPECIAL_OVERSCORE", 0b0111111);
 raw_write("SPECIAL_HYPHEN", 0b1111110);
 raw_write("SPECIAL_EQUALS", 0b1110110);
-raw_write("SPECIAL_DEFINED", 0b0110110);
-raw_write("SPECIAL_SEG_A", 0b0111111);
-raw_write("SPECIAL_SEG_B", 0b1011111);
-raw_write("SPECIAL_SEG_C", 0b1101111);
-raw_write("SPECIAL_SEG_D", 0b1110111);
-raw_write("SPECIAL_SEG_E", 0b1111011);
-raw_write("SPECIAL_SEG_F", 0b1111101);
-raw_write("SPECIAL_SEG_G", 0b1111110);
 return 0;
 }
