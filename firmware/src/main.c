@@ -31,7 +31,7 @@ int main(void)
 
     // Test loop.
     while(1){
-        for(idx = '0'; idx <= '9'; idx++){
+/*        for(idx = '0'; idx <= '9'; idx++){
             char_write(idx);
             _delay_ms(250);
         }
@@ -49,7 +49,13 @@ int main(void)
         _delay_ms(1000);
         char_write('-');
         _delay_ms(1000);
-        char_write('=');
+        char_write('=');*/
+        str_write("Hello There");
+        raw_write(SPECIAL_SEG_B);
+        DP_ON();
+        _delay_ms(250);
+        CLEAR_DISPLAY();
+        DP_OFF();
         _delay_ms(1000);
     }
     return 0;

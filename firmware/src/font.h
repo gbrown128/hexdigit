@@ -70,7 +70,7 @@
 #define LETTER_F 0b0111000
 #define LETTER_G 0b0000100
 #define LETTER_H 0b1001000
-//#define LETTER_I 0b
+#define LETTER_I 0b1101111
 #define LETTER_J 0b1000011
 //#define LETTER_K 0b
 #define LETTER_L 0b1110001
@@ -105,6 +105,8 @@
 #define LETTER_G_C 0x00
 #define LETTER_H_A 0x20
 #define LETTER_H_C 0x10
+#define LETTER_I_A 0x60
+#define LETTER_I_C 0x35
 #define LETTER_J_A 0x00
 #define LETTER_J_C 0x15
 #define LETTER_L_A 0x10

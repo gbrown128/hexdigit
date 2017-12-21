@@ -5,6 +5,7 @@
     \brief Source code for interacting with the 7-segment display.
 */
 
+#include <util/delay.h>
 #include "display.h"
 #include "font.h"
 
@@ -101,6 +102,10 @@ void char_write(uint8_t disp)
         A_SEGMENTS(LETTER_H_A);
         C_SEGMENTS(LETTER_H_C);
         break;
+    case 'I':
+        A_SEGMENTS(LETTER_I_A);
+        C_SEGMENTS(LETTER_I_C);
+        break;
     case 'J':
         A_SEGMENTS(LETTER_J_A);
         C_SEGMENTS(LETTER_J_C);
@@ -165,6 +170,19 @@ void char_write(uint8_t disp)
         break;
     }
     return;
+}
+
+void str_write(const char* str)
+{
+    uint16_t idx;
+    for (idx = 0; str[idx]; idx++) {
+        CLEAR_DISPLAY();
+        _delay_ms(150);
+        char_write(str[idx]);
+        _delay_ms(250);
+    }
+    CLEAR_DISPLAY();
+    return;\
 }
 
 void raw_write(uint8_t pattern)

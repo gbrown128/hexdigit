@@ -27,6 +27,8 @@
 void num_write(uint8_t num);
 /// Attempt to translate a character to a display pattern.
 void char_write(uint8_t disp);
+/// Flash the characters of a string on the display.
+void str_write(const char* str);
 /// Write bit pattern to 7-seg 0xABCDEFG
 void raw_write(uint8_t pattern);
 
@@ -35,7 +37,13 @@ void dp_toggle(void);
 
 /// Turn the DP on.
 #define DP_ON(x) (PORTA &= ~0x08)
+/// Turn the DP off.
 #define DP_OFF(x) (PORTA |= 0x08)
+
+/// Clear the display.
+#define CLEAR_DISPLAY(x)\
+    A_SEGMENTS(SPECIAL_BLANK_A);\
+    C_SEGMENTS(SPECIAL_BLANK_C)
 
 /// Set and clear segment bits on PORTA
 #define A_SEGMENTS(x) (PORTA = (PORTA & DISPLAY_MASK_A) | x)
