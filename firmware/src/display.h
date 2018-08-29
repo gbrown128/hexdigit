@@ -25,6 +25,8 @@
 
 /// Attempt to write a number to the display.
 void num_write(uint8_t num);
+/// Attempt to write a hex number to the display.
+void num_write(uint8_t num);
 /// Attempt to translate a character to a display pattern.
 void char_write(uint8_t disp);
 /// Flash the characters of a string on the display.

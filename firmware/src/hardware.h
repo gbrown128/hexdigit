@@ -20,7 +20,8 @@ void init_hw(void);
 void init_gpio(void);
 /// Set up the UART.
 void init_uart(void);
-
+/// Set up the ADC
+void init_adc(void);
 /** \} */
 
 #endif //_HARDWARE_H_

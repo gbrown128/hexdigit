@@ -18,44 +18,21 @@ uint8_t read_input(void);
 int main(void)
 {
     uint8_t idx;
+
     // Set up the hardware.
     init_hw();
 
-    // Toggle the DP to show the device is on.
+    // Turn on all digits as a hardware test.
     DP_ON();
+    num_write(8);
     _delay_ms(250);
     DP_OFF();
 
-    // Device here must work out its operating mode.
-    // TODO All that logic.
-
     // Test loop.
     while(1){
-/*        for(idx = '0'; idx <= '9'; idx++){
-            char_write(idx);
-            _delay_ms(250);
-        }
-        for(idx = 'A'; idx <= 'Z'; idx++){
-            char_write(idx);
-            _delay_ms(250);
-        }
-        for(idx = 'a'; idx <= 'z'; idx++){
-            char_write(idx);
-            _delay_ms(250);
-        }
-        char_write(' ');
-        _delay_ms(1000);
-        char_write('_');
-        _delay_ms(1000);
-        char_write('-');
-        _delay_ms(1000);
-        char_write('=');*/
-        str_write("Hello There");
-        raw_write(SPECIAL_SEG_B);
-        DP_ON();
-        _delay_ms(250);
-        CLEAR_DISPLAY();
-        DP_OFF();
+        idx++;
+        idx%=10;
+        num_write(idx);
         _delay_ms(1000);
     }
     return 0;

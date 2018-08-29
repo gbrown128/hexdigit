@@ -58,6 +58,39 @@ void num_write(uint8_t num)
     return;
 }
 
+void hex_write(uint8_t num)
+{
+    switch(num){
+    case 0xA:
+        A_SEGMENTS(LETTER_A_A);
+        C_SEGMENTS(LETTER_A_C);
+        break;
+    case 0xB:
+        A_SEGMENTS(LETTER_B_A);
+        C_SEGMENTS(LETTER_B_C);
+        break;
+    case 0xC:
+        A_SEGMENTS(LETTER_C_A);
+        C_SEGMENTS(LETTER_C_C);
+        break;
+    case 0xD:
+        A_SEGMENTS(LETTER_D_A);
+        C_SEGMENTS(LETTER_D_C);
+        break;
+    case 0xE:
+        A_SEGMENTS(LETTER_E_A);
+        C_SEGMENTS(LETTER_E_C);
+        break;
+    case 0xF:
+        A_SEGMENTS(LETTER_F_A);
+        C_SEGMENTS(LETTER_F_C);
+        break;
+    default:
+        num_write(num);
+    }
+    return;
+}
+
 void char_write(uint8_t disp)
 {
     // If it's a number, use the number function.

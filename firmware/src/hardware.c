@@ -14,6 +14,7 @@ void init_hw(void)
 {
     init_gpio();
     init_uart();
+    init_adc();
 }
 
 void init_gpio(void)
@@ -54,5 +55,18 @@ void init_uart(void)
     #endif
     // Enable the transmit and receive hardware.
     UCSR0B |= _BV(RXEN0) | _BV(TXEN0);
+    return;
+}
+
+void init_adc(void)
+{
+    // Power the ADC.
+    PRR &= ~_BV(PRADC);
+    // Input on PC1, Vcc Ref
+    ADMUX = 0x0A;
+    // Right adjust the result
+    ADCSRB |= _BV(ADLAR);
+    // Slow clock, and turn the ADC on, immediate reading taken.
+    ADCSRA |= _BV(ADEN) | _BV(ADSC) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0);
     return;
 }
